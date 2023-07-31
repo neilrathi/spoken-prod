@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@100mslive/react-sdk": "^0.8.10",
     "@empirica/core": "1.4.6",
     "esbuild": "0.17.15",
     "react": "18.2.0",

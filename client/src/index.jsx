@@ -1,4 +1,7 @@
 import React from "react";
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { HMSRoomProvider } from "@100mslive/react-sdk";
 import { createRoot } from "react-dom/client";
 import "@unocss/reset/tailwind-compat.css";
 import "virtual:uno.css";
@@ -10,6 +13,8 @@ const container = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
   <React.StrictMode>
-    <App />
+    <HMSRoomProvider>
+      <App />
+    </HMSRoomProvider>
   </React.StrictMode>
 );
