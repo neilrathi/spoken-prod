@@ -28,7 +28,7 @@ Empirica.onGameStart(({ game }) => {
   
       const roomId = getRoom.data.id;
       const getCode = await axiosInstance.post(`room-codes/room/${roomId}`);
-      const roomCode = getCode.data.data[1].code
+      const roomCode = getCode.data.data[0].code
       
       await Promise.all(game.players.map((player, i) => {
         return player.set("roomCode", roomCode);
