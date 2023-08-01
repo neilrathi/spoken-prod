@@ -1,27 +1,17 @@
 import React from "react";
-import { useState } from "react";
 import { useHMSActions } from "@100mslive/react-sdk";
 
-export function AudioRoom() {
-  const hmsActions = useHMSActions();
-  const [inputValues, setInputValues] = useState({
-    name: "",
-    token: ""
-  });
+const base =
+  "inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-empirica-500";
 
-  const handleInputChange = (e) => {
-    setInputValues((prevValues) => ({
-      ...prevValues,
-      [e.target.name]: e.target.value
-    }));
-  };
+export function AudioRoom({
+  userName,
+  roomCode,
+}) {
+  const hmsActions = useHMSActions();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      userName = '',
-      roomCode = '',
-    } = inputValues
 
     // use room code to fetch auth token
     const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode })
@@ -34,29 +24,8 @@ export function AudioRoom() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Join Room</h2>
-      <div className="input-container">
-        <input
-          required
-          value={inputValues.name}
-          onChange={handleInputChange}
-          id="name"
-          type="text"
-          name="name"
-          placeholder="Your name"
-        />
-      </div>
-      <div className="input-container">
-        <input
-          id="room-code"
-          type="text"
-          name="roomCode"
-          placeholder="Room code"
-          onChange={handleInputChange}
-        />
-      </div>
-      <button className="btn-primary">Join</button>
-    </form>
+    <button className={`${base}`} onClick = {handleSubmit}>
+      Join
+    </button>
   );
-}
+}  
