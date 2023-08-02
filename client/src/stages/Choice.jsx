@@ -30,7 +30,7 @@ export function Choice() {
       <p>Join the room?</p>
 
       <div className="flex justify-center m-5">
-        <AudioRoom userName = {player.id} roomCode = {player.get("roomCode")}/>
+        <AudioRoom userName = {player.id} roomCode = {player.get("roomCode")} className="m-5"/> <br />
         <Button className="m-5" handleClick={() => onClick("a")}> Option A </Button>
         <Button className="m-5" handleClick={() => onClick("b")}> Option B </Button>
       </div>

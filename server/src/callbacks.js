@@ -42,11 +42,13 @@ Empirica.onGameStart(({ game }) => {
 
   createRoomCode();
 
-  const round = game.addRound({
-    name: `Round`,
-  });
-  round.addStage({ name: "choice", duration: 10000 });
-  round.addStage({ name: "result", duration: 10000 });
+  for (let i = 0; i < 2; i++) {
+    const round = game.addRound({
+      name: `Round ${i}`,
+    });
+    round.addStage({ name: "choice", duration: 10000 });
+    round.addStage({ name: "result", duration: 10000 });
+  }
 });
 
 Empirica.onRoundStart(({ round }) => {});

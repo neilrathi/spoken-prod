@@ -7,6 +7,7 @@ const base =
 export function AudioRoom({
   userName,
   roomCode,
+  className = "",
 }) {
   const hmsActions = useHMSActions();
 
@@ -24,7 +25,7 @@ export function AudioRoom({
   };
 
   return (
-    <button className={`${base}`} onClick = {handleSubmit}>
+    <button className={`${base} ${className}`} onClick = {handleSubmit}>
       Join
     </button>
   );
