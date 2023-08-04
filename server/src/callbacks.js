@@ -1,7 +1,5 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
-import axios from 'axios'
-import jwt from 'jsonwebtoken';
-import uuid4 from 'uuid4';
+import axios from 'axios';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.on("batch", "status", (ctx, { batch, status }) => {
