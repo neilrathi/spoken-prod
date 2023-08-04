@@ -1,23 +1,25 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 import axios from 'axios'
+import jwt from 'jsonwebtoken';
+import uuid4 from 'uuid4';
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.on("batch", "status", (ctx, { batch, status }) => {
   console.log(`Batch ${batch.id} changed status to "${status}"`);
+  const treatment = batch.games[0].get("treatment")
+  const { managementToken, templateId } = treatment;
+
+  const axiosInstance = axios.create({
+    baseURL: 'https://api.100ms.live/v2/',
+    headers: {
+      'Authorization': 'Bearer ' + managementToken,
+      'Content-Type': 'application/json',
+    },
+  });
 
   if (status === "running") {
     batch.games.forEach((game, i) => {
-      const treatment = game.get("treatment");
-      const { managementToken, templateId } = treatment;
-
-      const axiosInstance = axios.create({
-        baseURL: 'https://api.100ms.live/v2/',
-        headers: {
-          'Authorization': 'Bearer ' + managementToken,
-          'Content-Type': 'application/json',
-        },
-      });
-    
+          
       const createRoomCode = async () => {
         try {
           const getRoom = await axiosInstance.post('rooms', {
