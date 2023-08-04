@@ -11,17 +11,19 @@ factors:
     - name: managementToken
       values:
         - value: a
-    - name: templateId
+    - name: templateID
       values:
         - value: b
 treatments:
     - name: Solo
       desc: Single-player Game
       factors:
+        managementToken: a
         playerCount: 1
+        templateID: b
     - name: Two Players
       desc: Two-player Game
       factors:
         managementToken: a
         playerCount: 2
-        templateId: b
+        templateID: b

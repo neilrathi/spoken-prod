@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from 'react';
 import { useHMSActions } from "@100mslive/react-sdk";
 
 const base =
@@ -8,25 +9,29 @@ export function AudioRoom({
   userName,
   roomCode,
   className = "",
+  forceJoin = false
 }) {
   const hmsActions = useHMSActions();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
     // use room code to fetch auth token
     const authToken = await hmsActions.getAuthTokenByRoomCode({ roomCode })
 
     try {
       await hmsActions.join({ userName, authToken });
     } catch (e) {
-      console.error(e)
+      console.error('Error joining room:', e)
     }
   };
 
-  return (
-    <button className={`${base} ${className}`} onClick = {handleSubmit}>
-      Join
-    </button>
-  );
+  if (forceJoin) {
+    handleSubmit();
+    return null
+  } else {
+    return (
+      <button className={`${base} ${className}`} onClick = {handleSubmit}>
+        Join
+      </button>
+    );
+  }
 }  

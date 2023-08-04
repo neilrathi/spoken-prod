@@ -8,6 +8,7 @@ import { useHMSActions } from "@100mslive/react-sdk";
 export function Choice() {
   const player = usePlayer();
   const hmsActions = useHMSActions();
+  console.log('Player room codes:', player.get("roomCode"))
 
   function onClick(choice) {
     player.round.set("decision", choice);
@@ -30,7 +31,7 @@ export function Choice() {
       <p>Join the room?</p>
 
       <div className="flex justify-center m-5">
-        <AudioRoom userName = {player.id} roomCode = {player.get("roomCode")} className="m-5"/> <br />
+        <AudioRoom userName = {player.id} roomCode = {player.get("roomCode")} forceJoin = {false}/> <br />
         <Button className="m-5" handleClick={() => onClick("a")}> Option A </Button>
         <Button className="m-5" handleClick={() => onClick("b")}> Option B </Button>
       </div>
