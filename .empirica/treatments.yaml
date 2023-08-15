@@ -10,20 +10,20 @@ factors:
         - value: 13
     - name: managementToken
       values:
-        - value: a
+        - value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2OTE2ODgwNTEsImV4cCI6MTY5MTc3NDQ1MSwianRpIjoiand0X25vbmNlIiwidHlwZSI6Im1hbmFnZW1lbnQiLCJ2ZXJzaW9uIjoyLCJuYmYiOjE2OTE2ODgwNTEsImFjY2Vzc19rZXkiOiI2NGMxYWJhYTkxYzAyM2I0ZTJkNzZlODQifQ.qFXEv9zXUQu1OgOn33K_bjgFZ_lpnrsN9aX68wdy9l8
     - name: templateId
       values:
-        - value: b
+        - value: 64c8a8e0b91f7e0f7b84ecf1
 treatments:
     - name: Solo
       desc: Single-player Game
       factors:
-        managementToken: a
+        managementToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2OTE2ODgwNTEsImV4cCI6MTY5MTc3NDQ1MSwianRpIjoiand0X25vbmNlIiwidHlwZSI6Im1hbmFnZW1lbnQiLCJ2ZXJzaW9uIjoyLCJuYmYiOjE2OTE2ODgwNTEsImFjY2Vzc19rZXkiOiI2NGMxYWJhYTkxYzAyM2I0ZTJkNzZlODQifQ.qFXEv9zXUQu1OgOn33K_bjgFZ_lpnrsN9aX68wdy9l8
         playerCount: 1
-        templateID: b
+        templateID: 64c8a8e0b91f7e0f7b84ecf1
     - name: Two Players
       desc: Two-player Game
       factors:
-        managementToken: a
+        managementToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2OTE2ODgwNTEsImV4cCI6MTY5MTc3NDQ1MSwianRpIjoiand0X25vbmNlIiwidHlwZSI6Im1hbmFnZW1lbnQiLCJ2ZXJzaW9uIjoyLCJuYmYiOjE2OTE2ODgwNTEsImFjY2Vzc19rZXkiOiI2NGMxYWJhYTkxYzAyM2I0ZTJkNzZlODQifQ.qFXEv9zXUQu1OgOn33K_bjgFZ_lpnrsN9aX68wdy9l8
         playerCount: 2
-        templateID: b
+        templateID: 64c8a8e0b91f7e0f7b84ecf1
