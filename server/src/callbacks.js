@@ -1,8 +1,12 @@
 import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 import axios from 'axios';
+import _ from 'underscore';
+const fs = require("fs");
+
 export const Empirica = new ClassicListenersCollector();
 
 Empirica.on("batch", "status", (ctx, { batch, status }) => {
+  
   console.log(`Batch ${batch.id} changed status to "${status}"`);
   const treatment = batch.games[0].get("treatment")
   const { managementToken, templateId } = treatment;
@@ -50,19 +54,43 @@ Empirica.on("batch", "status", (ctx, { batch, status }) => {
 });
 
 Empirica.onGameStart(({ game }) => {
+
+  const csvFilePath='./src/samplestims.csv' 
+  const csv=require('csvtojson') 
+  const stims = csv()
+  .fromFile(csvFilePath)
+  .then((jsonObj)=>{
+      console.log(jsonObj);
+      return(jsonObj);
+  })
+
+  const roleList = _.shuffle(['director','guesser'])
+  game.players.forEach((player, i) => {
+		player.set("role", roleList[i]);
+		console.log(player);
+  });
+
   game.players.forEach((player, i) => {
     player.set("roomCode", game.get("roomCode"));
   });
 
   console.log(`Game ${game.id} initialized, all players are assigned roomCodes...`)
 
-  for (let i = 0; i < 2; i++) {
+  let roundCounter = 1;
+
+  stims.map(function(stim) {
     const round = game.addRound({
-      name: `Round ${i}`,
+      name: `Round ${roundCounter}`,
+      target: stim.target,
+      images: stim.images.split(","),
+      guesserOrder: _.shuffle(stim.images.split(",")),
+      directorOrder: _.shuffle(stim.images.split(","))
     });
     round.addStage({ name: "choice", duration: 10000 });
     round.addStage({ name: "result", duration: 10000 });
-  }
+    roundCounter++; 
+  })
+
 });
 
 Empirica.onRoundStart(({ round }) => {});

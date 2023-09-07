@@ -1,21 +1,30 @@
 import React from "react";
-import { usePlayer, usePlayers } from "@empirica/core/player/classic/react";
+import { usePlayer, useRound, } from "@empirica/core/player/classic/react";
 import { Button } from "../components/Button";
 
 export function Result() {
   const player = usePlayer();
-  const players = usePlayers();
-  const partner = players.filter((p) => p.id !== player.id)[0];
+  const round = useRound();
+
+  const rightSelection = (round.get("decision") == round.get("target"));
+
+  const messageSubject = player.get("role") == "guesser" ? "You" : "Your partner";
+  const messageContinuation = rightSelection ? " made the right selection!" : " made the wrong selection!"
+  const message = messageSubject + messageContinuation
 
   return (
     <div>
-      <p>You chose: {player.round.get("decision")}</p>
-      <p>Your partner chose: {partner.round.get("decision")}</p>
-      <br />
+      
+      <table>
+        <tr>
+          <td style = {{paddingRight: "10px"}}> {message}  </td>
+          <td> <Button handleClick={() => player.stage.set("submit", true)}> Continue </Button> </td>
+        </tr>
+      </table>
+      
+      
 
-      <Button handleClick={() => player.stage.set("submit", true)}>
-        Continue
-      </Button>
     </div>
+
   );
 }
