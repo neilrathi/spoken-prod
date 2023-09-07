@@ -1,8 +1,10 @@
 {
   "dependencies": {
     "@empirica/core": "1.4.6",
+    "csv-parse": "^5.5.0",
     "minimist": "1.2.6",
     "papaparse": "^5.4.1",
+    "underscore": "^1.13.6",
     "ws": "^8.13.0"
   },
   "devDependencies": {
