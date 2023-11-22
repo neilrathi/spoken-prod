@@ -55,6 +55,8 @@ Empirica.on("batch", "status", (ctx, { batch, status }) => {
 
 Empirica.onGameStart(({ game }) => {
 
+  game.set("timestamps", [])
+
   const csvFilePath='./src/samplestims.csv' 
   const csv=require('csvtojson') 
   const stims = csv()
@@ -78,6 +80,11 @@ Empirica.onGameStart(({ game }) => {
 
   let roundCounter = 1;
 
+  const joinRound = game.addRound({
+    name: `Round ${roundCounter}`
+  });
+  joinRound.addStage({ name: "joinroom", duration: 10000 });
+
   stims.map(function(stim) {
     const round = game.addRound({
       name: `Round ${roundCounter}`,
@@ -93,7 +100,13 @@ Empirica.onGameStart(({ game }) => {
 
 });
 
-Empirica.onRoundStart(({ round }) => {});
+Empirica.onRoundStart(({ round }) => {
+  console.log(round.get("name"))
+  const cur_date = new Date();
+  const old_timestamps = round.currentGame.get("timestamps")
+  old_timestamps.push(cur_date)
+  round.currentGame.set("timestamps", old_timestamps)  
+});
 
 Empirica.onStageStart(({ stage }) => {});
 

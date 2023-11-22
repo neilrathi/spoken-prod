@@ -8,7 +8,8 @@ export function Choice() {
   return (
     <div>
 
-          You are the {player.get("role")}. Here's an instruction.  Join the room? <AudioRoom userName = {player.id} roomCode = {player.get("roomCode")} forceJoin = {false}/>
+          You are the {player.get("role")}. Here's an instruction.
+          {/* Join the room? <AudioRoom userName = {player.id} roomCode = {player.get("roomCode")} forceJoin = {false}/> */}
 
     </div>
   );
